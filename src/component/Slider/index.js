@@ -12,7 +12,19 @@ class Slider extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      detailViewActive: false
+    }
+
     this.slider = null;
+
+    //Binding
+    this.toggleDetailView = this.toggleDetailView.bind(this);
+  }
+
+  toggleDetailView(){
+    let {detailViewActive} = this.state;
+    this.setState( { detailViewActive: !detailViewActive } )
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -47,6 +59,8 @@ class Slider extends React.Component {
 
   render() {
     let cards;
+    let {detailViewActive} = this.state;
+
     cards = this.generateCards();
     
 
@@ -58,7 +72,7 @@ class Slider extends React.Component {
     }
 
     return (
-      <div className="SliderContainer">
+      <div className="SliderContainer" data-detail={detailViewActive} onClick={this.toggleDetailView}>
 
         {
           cards ? (
@@ -68,7 +82,7 @@ class Slider extends React.Component {
               selected={this.props.selectedIndex}
               infinite={false}
               organicArrows={false}
-              fillParent={false}>
+              fillParent={true}>
                 {cards}
             </AwesomeSlider>// default false>
           ) : null

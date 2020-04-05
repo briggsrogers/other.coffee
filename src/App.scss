@@ -5,11 +5,19 @@ html{
   background-color: var(--colorOffWhite);
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+
 .App {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
   width: 100%;
 
   font-family: 'Forum', cursive;
@@ -106,6 +114,7 @@ html{
   //Font
   --colorMarigold: #FFBD2B;
   --colorOffWhite: #F7F7F7;
+  --colorMidGray: #373737;
   --colorLightGray: #EEEEEE;
 
   //MapBox

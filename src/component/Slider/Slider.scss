@@ -1,13 +1,24 @@
 .SliderContainer {
   position: relative;
   width: 100%;
-  overflow: hidden;
   margin-top: -20px;
-  height: calc(40vh + 20px);
+  min-height: 400px;
+
+  transition: transform  .2s ease-in-out;
+
+  &[data-detail="true"]{ 
+    transform: translateY(-30vh);
+    min-height: 80vh;
+    z-index: 99;
+
+    // position: absolute;
+    // top: 0;
+  }
 
   .awssld__content{
     background-color: transparent;
     align-items: flex-start;
+    overflow: scroll;
   }
   
   .awssld--active{ z-index: 0; }

@@ -3,17 +3,14 @@ import './Card.scss';
 
 import location from '../../../assets/images/icon-location@2x.png';
 
-import Button from '../../../component/Button';
+import Link from '../../Link';
+import ButtonWithHint from '../../ButtonWithHint';
 
 class Card extends React.Component {  
-
-  componentDidUpdate(prevProps, prevState) {
-
-  }
   
   render(){
 
-    let { Name, PlaceName, ShopUrl, Notes, Website } = this.props.data.fields;
+    let { Name, PlaceName, ShopUrl, Notes, Website, IG } = this.props.data.fields;
     let { distanceFromUser } = this.props.data;
 
     return (
@@ -37,24 +34,31 @@ class Card extends React.Component {
             
           </div>
           
-          
-          <p>{ Notes }</p>
-
           <div className="ButtonContainer">
 
-           
-            {
-              Website ? (
-                <Button type={"secondary"} cta="visit website" href={ Website }/>
-              ) : null
-            }
             {
               ShopUrl ? (
-                <Button type={"primary"} cta="gift cards" href={ ShopUrl }/>
+                <ButtonWithHint hint={"support this business"} type={"primary"} cta="shop online" href={ ShopUrl }/>
               ) : null
             }
             
           </div>
+          
+          <div className="NotesContainer"><p>{ Notes }</p></div>
+          
+
+          {
+            Website ? (
+              <Link cta={Website} href={ Website }/>
+            ) : null
+          }
+          {
+            IG ? (
+              <Link cta={`@${IG}`} href={ `https://instagram.com/${IG}` }/>
+            ) : null
+          }
+
+
         </div>
       </div>
     );
