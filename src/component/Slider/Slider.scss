@@ -1,0 +1,14 @@
+.SliderContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -20px;
+  height: calc(40vh + 20px);
+
+  .awssld__content{
+    background-color: transparent;
+    align-items: flex-start;
+  }
+  
+  .awssld--active{ z-index: 0; }
+}

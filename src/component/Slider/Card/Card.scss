@@ -1,0 +1,76 @@
+.CardContainer {
+  width: calc(100% - 16px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 4px;
+
+  padding-bottom: 40px;
+
+  box-shadow:
+    0 0.4px 2.2px rgba(0, 0, 0, 0.003),
+    0 0.9px 5.3px rgba(0, 0, 0, 0.004),
+    0 1.6px 10px rgba(0, 0, 0, 0.005),
+    0 2.9px 17.9px rgba(0, 0, 0, 0.006),
+    0 5.4px 33.4px rgba(0, 0, 0, 0.007),
+    0 13px 80px rgba(0, 0, 0, 0.01)
+  ;
+
+  .Card{
+    min-width: 300px;
+    margin-top: 10px;
+    padding: 10px 30px 30px 30px;
+
+    //background-color: var(--coloroffWhite);
+    border-radius: 6px;
+    //margin-top: -30px;
+
+    .Title{
+      font-size: 32px;
+      letter-spacing: -.05em;
+      //font-weight: 400;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .LocationBar{
+      display: flex;
+      flex-direction: row;
+
+      .Location{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+  
+        //margin-top: -10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+  
+          img{
+            width: 12px;
+            height: 14px;
+            margin-right: 10px;
+          }
+  
+        }
+
+        .Distance{
+          opacity: .5;
+        }
+    }
+
+      h1{
+        font-weight: 400;
+        letter-spacing: -2px !important;
+      }
+
+      p{
+        display: inline;
+      }
+      
+  }
+}
+

@@ -1,0 +1,38 @@
+.ButtonContainer {
+  button {
+    font-family: 'Forum';
+    height: 50px;
+    border: none;
+    //margin-top: 10px;
+    margin: 10px 10px 0px 0px;
+
+    background-color: var(--colorMarigold);
+
+    span{ 
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &[data-type="primary"] {
+      background-color: var(--colorMarigold);
+    }
+
+    &[data-type="secondary"] {
+      border: solid 2px var(--colorMarigold);
+      background-color: var(--colorOffWhite);
+    }
+
+    &:active {
+      transform: scale(.98);
+    }
+
+    &hover {
+      transform: scale(.95);
+    }
+
+    border-radius: 4px;
+
+    font-size: 18px;
+    -webkit-appearance: none;
+  }
+}
