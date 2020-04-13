@@ -14,18 +14,26 @@
 
   display: none;
 
+  //Desktop
+  @media only screen and (min-width: 799px) {
+    position: absolute;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+  }
+
   &[data-active="true"]{ display: block; }
 
   .FilterViewInner {
-    width: 80vw;
+    width: 80%;
     margin: 0 auto;
     text-align: center;
-    margin-top: 15vw;
   }
 
   .FilterHeader {
 
     margin-bottom: 40px;
+    margin-top: 10vh;
 
     img {
       width: 20px;

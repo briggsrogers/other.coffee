@@ -9,6 +9,7 @@
   border-radius: 4px;
 
   padding-bottom: 40px;
+  pointer-events: auto;
 
   box-shadow:
     0 0.4px 2.2px rgba(0, 0, 0, 0.003),
@@ -19,15 +20,16 @@
     0 13px 80px rgba(0, 0, 0, 0.01)
   ;
 
+  //Desktop
+  @media only screen and (min-width: 799px) {
+    width: 100%;
+  }
+
   .Card{
     width: 100%;
-    // min-width: 300px;
     margin-top: 10px;
     padding: 10px 30px 150px 30px;
-
-    //background-color: var(--coloroffWhite);
     border-radius: 6px;
-    //margin-top: -30px;
 
     .Title{
       font-size: 32px;

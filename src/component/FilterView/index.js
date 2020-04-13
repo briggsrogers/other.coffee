@@ -14,7 +14,7 @@ class FilterView extends React.Component {
 
     //Filter Functions
     this.filterFunctions = {
-      bakery:  (item) => item.fields.BakedGoods,
+      // bakery:  (item) => item.fields.BakedGoods,
       hotfood:  (item) => item.fields.Menu,
       takeaway:  (item) => item.fields.TakeAway,
       accessible:  (item) => item.fields.Accessible,
@@ -22,6 +22,7 @@ class FilterView extends React.Component {
       sitoutside:  (item) => item.fields.SitOutside,
       goodforwork: (item) => item.fields.GoodForWork,
       goodforgroups: (item) => item.fields.GoodForGroups,
+      onlineshop: (item) => item.fields.ShopUrl,
     }
   }
   
@@ -87,18 +88,18 @@ class FilterView extends React.Component {
 
           <div className="FilterField">
             <form onInput={this.onFormInput} ref={this.filterField}>
-              <label className="FilterContainer">
+              {/* <label className="FilterContainer">
                 <input type="checkbox" id="bakery" name="bakery" />
                 <span className="Checkmark">bakery</span>  
-              </label>
+              </label> */}
               <label className="FilterContainer">
                 <input type="checkbox" id="hotfood" name="hotfood" />
                 <span className="Checkmark">hot food</span>  
               </label>
-              <label className="FilterContainer">
+              {/* <label className="FilterContainer">
                 <input type="checkbox" id="takeaway" name="takeaway" />
                 <span className="Checkmark">take-away</span>  
-              </label>
+              </label> */}
               <label className="FilterContainer">
                 <input type="checkbox" id="accessible" name="accessible" />
                 <span className="Checkmark">accessible</span>  
@@ -118,6 +119,10 @@ class FilterView extends React.Component {
               <label className="FilterContainer">
                 <input type="checkbox" id="goodforgroups" name="goodforgroups" />
                 <span className="Checkmark">good for groups</span>  
+              </label>
+              <label className="FilterContainer">
+                <input type="checkbox" id="onlineshop" name="onlineshop" />
+                <span className="Checkmark">shop online</span>  
               </label>
             </form> 
           </div>

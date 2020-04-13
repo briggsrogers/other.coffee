@@ -11,7 +11,8 @@ class MapBox extends React.Component {
     this.state = {
       lng: 53.339961, //Dublin
       lat: -6.24197,
-      zoom: 15
+      zoom: 15,
+      pitch: 60
     };
 
     this.markers = [];
@@ -72,7 +73,7 @@ class MapBox extends React.Component {
         essential: true,
         curve: 0.5,
         speed: 1.5,
-        zoom: 14
+        // zoom: 14
       });
     }
 
@@ -86,13 +87,14 @@ class MapBox extends React.Component {
   }
 
   initMapbox(){
-    let { allEntries, selectedEntry } = this.props;
+    let { allEntries } = this.props;
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/dark-v10",
       center: [this.state.lat, this.state.lng],
-      zoom: this.state.zoom
+      zoom: this.state.zoom,
+      pitch: this.state.pitch
     });
 
     this.generateMarkers(allEntries);

@@ -3,7 +3,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
-  padding: 2px;
   background-color: var(--colorLightGray);
 
   margin-top: 10px;
@@ -20,13 +19,13 @@
   button {
     font-family: 'Forum';
     height: 50px;
-    min-width: 30vw;
+
     border: none;
     text-align: center;
     //margin-top: 10px;
     margin: 10px 10px 10px 10px;
     //margin-bottom: 10px;
-    min-width: 130px;
+    min-width: 150px;
 
     align-self: flex-end;
 

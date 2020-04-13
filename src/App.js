@@ -4,8 +4,9 @@ import "./App.scss";
 import FilterView from "./component/FilterView";
 import Slider from "./component/Slider";
 import MapBox from "./component/MapBox";
+import Spinner from "./component/Spinner";
 
-import icon from './assets/images/icon-filter@2x.png';
+import icon from "./assets/images/icon-filter@2x.png";
 
 import { getEntries } from "./utils/data-helpers";
 import { distanceBetween } from "./utils/location-helpers";
@@ -20,7 +21,8 @@ class App extends React.Component {
       selectedEntry: {},
       userLocation: [53.339961, -6.24197], //Dublin
       menuActive: false,
-      filtersApplied: false
+      filtersApplied: false,
+      isAwaitingData: true,
     };
 
     // Binding
@@ -41,7 +43,7 @@ class App extends React.Component {
       this.setEntries(entries);
 
       // Locate User
-      //this.requestLocation();
+      this.requestLocation();
     });
   }
 
@@ -71,7 +73,7 @@ class App extends React.Component {
     });
   }
 
-  updateRelavent(entries){
+  updateRelavent(entries) {
     this.setState({
       relevantEntries: entries,
       selectedEntry: entries[0],
@@ -94,13 +96,21 @@ class App extends React.Component {
           // Set Location
           this.setState({
             userLocation: [latitude, longitude],
+            isAwaitingData: false
           });
 
-          let nearbyEntries = this.sortByNearby(allEntries, latitude, longitude);
+          let nearbyEntries = this.sortByNearby(
+            allEntries,
+            latitude,
+            longitude
+          );
           this.setEntries(nearbyEntries);
         },
         (error) => {
           console.log("Error", error);
+          this.setState({
+            isAwaitingData: false
+          });
         }
       );
     }
@@ -133,7 +143,15 @@ class App extends React.Component {
   }
 
   render() {
-    let { allEntries, relevantEntries, selectedEntry, selectedIndex, menuActive, filtersApplied } = this.state;
+    let {
+      allEntries,
+      relevantEntries,
+      selectedEntry,
+      selectedIndex,
+      menuActive,
+      filtersApplied,
+      isAwaitingData,
+    } = this.state;
 
     return (
       <div className="App">
@@ -144,18 +162,20 @@ class App extends React.Component {
           selectedEntry={selectedEntry}
           onMarkerClick={this.updateSelected}
         />
+
         <Slider
           cards={relevantEntries}
           onChange={this.updateSelected}
           selectedIndex={selectedIndex}
         />
-        
-        <FilterView 
+
+        <FilterView
           onFilter={this.updateRelavent}
           toggleFilterApplied={this.toggleFilterApplied}
-          allEntries={allEntries} 
-          active={menuActive}/>
-        
+          allEntries={allEntries}
+          active={menuActive}
+        />
+
         <div
           className="MenuToggle"
           data-active={menuActive}
@@ -166,11 +186,17 @@ class App extends React.Component {
             <span className="ToggleInnerActive">{`${relevantEntries.length} places`}</span>
           ) : (
             <span className="ToggleInnerInActive">
-              <img src={icon} alt="filter"/>
+              <img src={icon} alt="filter" />
               <span>Filters</span>
-            </span>     
+            </span>
           )}
         </div>
+
+        {isAwaitingData ? (
+          <div className="LoadingVeil">
+            <Spinner />
+          </div>
+        ) : null}
       </div>
     );
   }

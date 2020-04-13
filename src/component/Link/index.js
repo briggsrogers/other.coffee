@@ -6,7 +6,7 @@ class Link extends React.Component {
   render(){
     return (
       <div className="LinkContainer">
-        <a href={this.props.href} target="_blank">{this.props.cta}</a>
+        <a href={this.props.href} target="_blank" rel="noopener noreferrer">{this.props.cta}</a>
       </div>
     );
   }

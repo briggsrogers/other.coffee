@@ -1,7 +1,7 @@
 import React from "react";
 import "./Slider.scss";
 
-//import Siema from "siema";
+import { isMobile } from 'utils/platform-helpers';
 
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
@@ -23,6 +23,8 @@ class Slider extends React.Component {
   }
 
   toggleDetailView(){
+    //Cancel on mobile
+    if( !isMobile() ){ return }
     let {detailViewActive} = this.state;
     this.setState( { detailViewActive: !detailViewActive } )
   }
@@ -40,7 +42,6 @@ class Slider extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Slider Mount", this.slider);
     //this.slider.onTouchEnd = () => {console.log('Change')};
     
   }
@@ -68,6 +69,7 @@ class Slider extends React.Component {
       currentIndex
     }) => {
       let { onChange } = this.props;
+
       onChange(currentIndex);
     }
 
@@ -82,7 +84,9 @@ class Slider extends React.Component {
               selected={this.props.selectedIndex}
               infinite={false}
               organicArrows={false}
-              fillParent={true}>
+              arrows={true}
+              fillParent={true}
+              mobileTouch={!detailViewActive}>
                 {cards}
             </AwesomeSlider>// default false>
           ) : null

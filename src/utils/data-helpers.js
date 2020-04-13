@@ -3,7 +3,6 @@ import axios from "axios";
 const AIRTABLE_URL = 'https://api.airtable.com/v0/appSZqziDUsRsJFv6/pourover-db?maxRecords=100&view=Grid%20view'
 
 export const getEntries = (onSuccess) => {
-  let data;
   axios
     .get(AIRTABLE_URL, 
       { 
