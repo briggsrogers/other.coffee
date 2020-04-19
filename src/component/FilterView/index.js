@@ -37,8 +37,6 @@ class FilterView extends React.Component {
         activeFilters.push(elementsList[i].name);
       }
     }
-
-    
     this.filterEntriesAndUpdate(activeFilters);
   }
 
@@ -88,6 +86,10 @@ class FilterView extends React.Component {
 
           <div className="FilterField">
             <form onInput={this.onFormInput} ref={this.filterField}>
+              <label className="FilterContainer">
+                <input type="checkbox" id="onlineshop" name="onlineshop" />
+                <span className="Checkmark">shop online</span>  
+              </label>
               {/* <label className="FilterContainer">
                 <input type="checkbox" id="bakery" name="bakery" />
                 <span className="Checkmark">bakery</span>  
@@ -119,10 +121,6 @@ class FilterView extends React.Component {
               <label className="FilterContainer">
                 <input type="checkbox" id="goodforgroups" name="goodforgroups" />
                 <span className="Checkmark">good for groups</span>  
-              </label>
-              <label className="FilterContainer">
-                <input type="checkbox" id="onlineshop" name="onlineshop" />
-                <span className="Checkmark">shop online</span>  
               </label>
             </form> 
           </div>

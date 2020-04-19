@@ -131,7 +131,7 @@ class App extends React.Component {
         Longitude,
         "K"
       );
-      item.distanceFromUser = Math.round(distanceFromUser);
+      item.distanceFromUser = Math.round(distanceFromUser * 10) / 10
       locatedEntries.push(item);
     });
 

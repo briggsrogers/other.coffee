@@ -48,11 +48,12 @@ class Slider extends React.Component {
 
   generateCards() {
     let { cards } = this.props;
+    let { detailViewActive } = this.state;
 
     let deck = [];
 
     cards.forEach((item, i) => {
-      deck.push(<div key={i}><Card data={item} /></div>);
+      deck.push(<div key={i}><Card data={item} expanded={detailViewActive} /></div>);
     });
 
     return deck;

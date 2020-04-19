@@ -12,7 +12,7 @@ class MapBox extends React.Component {
       lng: 53.339961, //Dublin
       lat: -6.24197,
       zoom: 15,
-      pitch: 60
+      pitch: 60,
     };
 
     this.markers = [];
@@ -25,43 +25,48 @@ class MapBox extends React.Component {
   }
 
   generateMarkers(items) {
-   
     // Remove all
-    this.markers.forEach((marker) => { marker.remove() })
+    this.markers.forEach((marker) => {
+      marker.remove();
+    });
     this.markers = [];
 
     let self = this;
 
     items.forEach((item, index) => {
-
       let { Longitude, Latitude, Name } = item.fields;
 
       // create a HTML element for each feature
       var el = document.createElement("div");
-      el.addEventListener('click', () => 
-          { 
-            self.props.onMarkerClick(index)
-          }
-      ); 
-      el.className = "Marker";
+      el.addEventListener("click", () => {
+        self.props.onMarkerClick(index);
+      });
+
+      let classList =
+        item.id === this.props.selectedEntry.id ? "Marker Selected" : "Marker";
+      el.className = classList;
 
       // create the popup
       let popup = new mapboxgl.Popup({ offset: 25 }).setText(Name);
 
       // make a marker for each feature and add to the map
-      let marker = new mapboxgl.Marker(el).setLngLat([Longitude, Latitude]).setPopup(popup);
+      let marker = new mapboxgl.Marker(el)
+        .setLngLat([Longitude, Latitude])
+        .setPopup(popup);
       this.markers.push(marker);
     });
 
-    this.markers.forEach((marker) => { marker.addTo(self.map) })
+    this.markers.forEach((marker) => {
+      marker.addTo(self.map);
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     let { allEntries, relevantEntries, selectedEntry } = this.props;
     let { Longitude, Latitude } = selectedEntry.fields;
 
-    if(prevProps.allEntries[0]){
-      if(allEntries[0].id !== prevProps.allEntries[0].id){
+    if (prevProps.allEntries[0]) {
+      if (allEntries[0].id !== prevProps.allEntries[0].id) {
         this.initMapbox();
       }
     }
@@ -75,6 +80,9 @@ class MapBox extends React.Component {
         speed: 1.5,
         // zoom: 14
       });
+
+      //Re-draw markers
+      this.generateMarkers(relevantEntries);
     }
 
     if (relevantEntries.length !== prevProps.relevantEntries.length) {
@@ -86,7 +94,7 @@ class MapBox extends React.Component {
     this.initMapbox();
   }
 
-  initMapbox(){
+  initMapbox() {
     let { allEntries } = this.props;
 
     this.map = new mapboxgl.Map({
@@ -94,8 +102,19 @@ class MapBox extends React.Component {
       style: "mapbox://styles/mapbox/dark-v10",
       center: [this.state.lat, this.state.lng],
       zoom: this.state.zoom,
-      pitch: this.state.pitch
+      pitch: this.state.pitch,
     });
+
+    //Add User Location
+    // Add geolocate control to the map.
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      })
+    );
 
     this.generateMarkers(allEntries);
   }
@@ -105,7 +124,7 @@ class MapBox extends React.Component {
       <div className="Container">
         <div
           className="MapBoxTarget"
-          ref={el => (this.mapContainer = el)}
+          ref={(el) => (this.mapContainer = el)}
         ></div>
       </div>
     );
