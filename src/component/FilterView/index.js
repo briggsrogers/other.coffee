@@ -42,8 +42,6 @@ class FilterView extends React.Component {
 
   filterEntriesAndUpdate(activeFilters){
     let { allEntries, onFilter, toggleFilterApplied } = this.props;
-    console.log('Before: ', allEntries.length);
-
     let results = allEntries;
 
     // If there are filters

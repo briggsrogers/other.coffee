@@ -11,7 +11,7 @@ class MapBox extends React.Component {
     this.state = {
       lng: 53.339961, //Dublin
       lat: -6.24197,
-      zoom: 15,
+      zoom: 5,
       pitch: 60,
     };
 
@@ -78,7 +78,7 @@ class MapBox extends React.Component {
         essential: true,
         curve: 0.5,
         speed: 1.5,
-        // zoom: 14
+        zoom: 14
       });
 
       //Re-draw markers

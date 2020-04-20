@@ -8,6 +8,11 @@ import Link from "../../Link";
 import ButtonWithHint from "../../ButtonWithHint";
 
 class Card extends React.Component {
+
+  handleDrag(){
+    console.log('Drag');
+  }
+
   render() {
     let {
       Name,

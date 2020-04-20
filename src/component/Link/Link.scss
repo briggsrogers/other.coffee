@@ -1,7 +1,14 @@
 .LinkContainer {
-  margin-top: 10px;
+  display: block;
+  margin-bottom: 12px;
 
   a{
+    font-size: 12px;
+    padding: 8px;
+    background-color: var(--colorLightGray);
     color: var(--colorMidGray);
+    text-decoration: none;
+    border-radius: 4px;
+    line-height: 2em;
   }
 }
