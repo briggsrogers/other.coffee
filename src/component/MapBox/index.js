@@ -4,6 +4,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import mapboxgl from "mapbox-gl";
 
+import { isFavourite } from '../../utils/fav-helpers';
+
 class MapBox extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class MapBox extends React.Component {
 
     items.forEach((item, index) => {
       let { Longitude, Latitude, Name } = item.fields;
-
+      
       // create a HTML element for each feature
       var el = document.createElement("div");
       el.addEventListener("click", () => {
@@ -45,6 +47,8 @@ class MapBox extends React.Component {
       let classList =
         item.id === this.props.selectedEntry.id ? "Marker Selected" : "Marker";
       el.className = classList;
+
+      el.dataset.fav = isFavourite(item.id);
 
       // create the popup
       let popup = new mapboxgl.Popup({ offset: 25 }).setText(Name);
@@ -99,7 +103,7 @@ class MapBox extends React.Component {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: "mapbox://styles/mapbox/dark-v10",
+      style: "mapbox://styles/rogbrian/ck9foarv20v3o1ik6jze2yepc",
       center: [this.state.lat, this.state.lng],
       zoom: this.state.zoom,
       pitch: this.state.pitch,

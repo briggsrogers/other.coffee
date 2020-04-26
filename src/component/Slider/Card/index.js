@@ -3,14 +3,29 @@ import "./Card.scss";
 
 import location from "../../../assets/images/icon-location@2x.png";
 import { isMobile } from "utils/platform-helpers";
+import { toggleFavourite, isFavourite } from "utils/fav-helpers";
 
 import Link from "../../Link";
 import ButtonWithHint from "../../ButtonWithHint";
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
 
-  handleDrag(){
-    console.log('Drag');
+    //Binding
+    this.onSave = this.onSave.bind(this);
+
+    console.log("isFav?", isFavourite(this.props.data.id));
+  }
+
+  handleDrag() {
+    console.log("Drag");
+  }
+
+  onSave(e) {
+    let { id } = this.props.data;
+    console.log("Saving", this.props.data.id);
+    toggleFavourite(id);
   }
 
   render() {
@@ -51,26 +66,30 @@ class Card extends React.Component {
           <div className="ButtonContainer">
             {ShopUrl ? (
               <ButtonWithHint
-                hint={"support this business"}
+                hint={"Support this business"}
                 type={"primary"}
-                cta="shop online"
+                cta="Shop online"
                 href={ShopUrl}
               />
             ) : null}
           </div>
 
+          <div className="NotesContainer">
+            <p>{Notes}</p>
+          </div>
+
           {!isMobile() || expanded ? (
             <div className="BottomContent">
-              <div className="NotesContainer">
-                <p>{Notes}</p>
-              </div>
-
               {Website ? <Link cta={Website} href={Website} /> : null}
               {IG ? (
                 <Link cta={`@${IG}`} href={`https://instagram.com/${IG}`} />
               ) : null}
             </div>
           ) : null}
+
+          <div className="Save" data-fav={isFavourite(this.props.data.id)}>
+            <button onClick={(e) => this.onSave(e)}></button>
+          </div>
         </div>
       </div>
     );

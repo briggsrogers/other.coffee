@@ -21,15 +21,14 @@
   &[data-detail="true"]{ 
     transform: translateY(-30vh);
     min-height: 80vh;
-
-    // position: absolute;
-    // top: 0;
+    
+    .awssld__content{ overflow: scroll; }
   }
 
   .awssld__content{
     background-color: transparent;
     align-items: flex-start;
-    overflow: scroll;
+    //overflow: scroll;
   }
   
   .awssld--active{ z-index: 0; }
@@ -44,8 +43,6 @@
     button{
       width: 60px;
       height: 60px;
-      //margin-top: 200px;
-      //background-color: var(--colorLightGray);
       border: solid 2px var(--colorLightGray);
       border-radius: 4px;
       opacity: .6;

@@ -79,7 +79,7 @@ class FilterView extends React.Component {
           <div className="FilterHeader">
             <img src={icon} alt="Filter"/>
             <h1>Filters</h1>
-            <h3>Refine your selection.</h3>
+            <p>Refine your selection.</p>
           </div>  
 
           <div className="FilterField">

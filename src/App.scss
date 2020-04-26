@@ -1,5 +1,5 @@
 //Font
-@import url('https://fonts.googleapis.com/css?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Manrope:wght@500&display=swap');
 
 html{
   background-color: var(--colorOffWhite);
@@ -12,6 +12,17 @@ body {
   overflow: auto;
 }
 
+h1{
+  font-family: 'Bowlby One SC', cursive;
+  color: var(--colorMidGray);
+}
+
+p {
+  font-size: 14px;
+  line-height: 26px;
+  color: var(--colorMidGray);
+}
+
 .App {
   position: absolute;
   top: 0;
@@ -19,7 +30,7 @@ body {
   overflow: hidden;
   width: 100%;
 
-  font-family: 'Forum', cursive;
+  font-family: 'Manrope', sans-serif;
 
   background-color: var(--colorOffWhite);
 
@@ -140,6 +151,7 @@ body {
   --colorOffWhite: #F7F7F7;
   --colorMidGray: #373737;
   --colorLightGray: #EEEEEE;
+  --colorPink: #FF265C;
 
   //MapBox
   .mapboxgl-ctrl-logo{ display: none; }

@@ -10,7 +10,7 @@
   border-radius: 4px;
 
   padding-bottom: 40px;
-  pointer-events: auto;
+  pointer-events: none;
 
   box-shadow:
     0 0.4px 2.2px rgba(0, 0, 0, 0.003),
@@ -31,6 +31,7 @@
     margin-top: 10px;
     padding: 10px 30px 150px 30px;
     border-radius: 6px;
+    pointer-events: none;
 
     .TopLockup{
       display: flex;
@@ -58,8 +59,10 @@
     }
 
     .Title{
+      font-family: 'Bowlby One SC', cursive;
+      color: var(--colorMidGray);
       font-size: 30px;
-      letter-spacing: -.04em;
+      letter-spacing: -.01em;
       width: 90%;
       margin-top: 15px;
       margin-bottom: 15px;
@@ -69,7 +72,7 @@
     .LocationBar{
       display: flex;
       flex-direction: row;
-      //margin-bottom: 10px;
+      font-size: 14px;
 
       .Location{
         display: flex;
@@ -97,6 +100,8 @@
       animation: rise .2s ease-in forwards;
       transform: translateY(100px);
       opacity: 0;
+
+      pointer-events: none;
 
       @keyframes rise {
         to{
@@ -127,6 +132,33 @@
       &[data-expanded="true"]{
         .BottomContent{ display: block; }
       }
+  }
+
+  .Save{
+    pointer-events: auto;
+    margin-top: 20px;
+
+    &[data-fav="true"]{
+      button{
+        background-image: url(../../../assets/images/icon-heart-on@2x.png);
+      }
+    }
+
+    button{
+      width: 50px;
+      height: 50px;
+      background-image: url(../../../assets/images/icon-heart-off@2x.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: transparent;
+      border: none;
+
+      &:active{
+        opacity: .2;
+      }
+    }
+    
   }
 }
 

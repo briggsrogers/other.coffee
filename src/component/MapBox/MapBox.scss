@@ -48,5 +48,9 @@
       top: -12px;
       left: -12px;
     }
+
+    &[data-fav="true"]{
+      border-color: var(--colorPink);
+    }
   }
 }
