@@ -153,6 +153,8 @@ class App extends React.Component {
       isAwaitingData,
     } = this.state;
 
+    let placesNoun = relevantEntries.length > 1 ? 'places' : 'place';
+
     return (
       <div className="App">
         {/* <Header /> */}
@@ -183,7 +185,7 @@ class App extends React.Component {
           data-filtersapplied={filtersApplied}
         >
           {menuActive ? (
-            <span className="ToggleInnerActive">{`${relevantEntries.length} places`}</span>
+            <span className="ToggleInnerActive">{`${relevantEntries.length} ${placesNoun}`}</span>
           ) : (
             <span className="ToggleInnerInActive">
               <img src={icon} alt="filter" />

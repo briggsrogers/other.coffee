@@ -12,10 +12,12 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isFavourite: isFavourite(this.props.data.id)
+    }
+
     //Binding
     this.onSave = this.onSave.bind(this);
-
-    console.log("isFav?", isFavourite(this.props.data.id));
   }
 
   handleDrag() {
@@ -23,9 +25,12 @@ class Card extends React.Component {
   }
 
   onSave(e) {
+    e.stopPropagation();
     let { id } = this.props.data;
-    console.log("Saving", this.props.data.id);
-    toggleFavourite(id);
+
+    this.setState({
+      isFavourite: toggleFavourite(id)
+    })
   }
 
   render() {
@@ -39,6 +44,7 @@ class Card extends React.Component {
     } = this.props.data.fields;
     let { distanceFromUser } = this.props.data;
     let { expanded } = this.props;
+    let { isFavourite } = this.state;
 
     return (
       <div className="CardContainer">
@@ -87,7 +93,7 @@ class Card extends React.Component {
             </div>
           ) : null}
 
-          <div className="Save" data-fav={isFavourite(this.props.data.id)}>
+          <div className="Save" data-fav={isFavourite}>
             <button onClick={(e) => this.onSave(e)}></button>
           </div>
         </div>

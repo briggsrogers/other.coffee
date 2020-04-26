@@ -3,6 +3,9 @@ import './FilterView.scss';
 
 import icon from '../../assets/images/icon-filter@2x.png';
 
+import { isFavourite } from '../../utils/fav-helpers';
+import heart from '../../assets/images/icon-heart-on@2x.png';
+
 class FilterView extends React.Component {
 
   constructor(props) {
@@ -15,6 +18,7 @@ class FilterView extends React.Component {
     //Filter Functions
     this.filterFunctions = {
       // bakery:  (item) => item.fields.BakedGoods,
+      favourite: (item) => isFavourite(item.id),
       hotfood:  (item) => item.fields.Menu,
       takeaway:  (item) => item.fields.TakeAway,
       accessible:  (item) => item.fields.Accessible,
@@ -77,7 +81,6 @@ class FilterView extends React.Component {
       <div className="FilterView" data-active={active}>
         <div className="FilterViewInner">
           <div className="FilterHeader">
-            <img src={icon} alt="Filter"/>
             <h1>Filters</h1>
             <p>Refine your selection.</p>
           </div>  
@@ -85,7 +88,11 @@ class FilterView extends React.Component {
           <div className="FilterField">
             <form onInput={this.onFormInput} ref={this.filterField}>
               <label className="FilterContainer">
-                <input type="checkbox" id="onlineshop" name="onlineshop" />
+                <input type="checkbox" id="favourite" name="favourite" />   
+                <span className="Checkmark"><img src={heart} alt=""/>favourites</span>  
+              </label>
+              <label className="FilterContainer">
+                <input type="checkbox" id="onlineshop" name="onlineshop" />          
                 <span className="Checkmark">shop online</span>  
               </label>
               {/* <label className="FilterContainer">

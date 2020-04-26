@@ -65,6 +65,10 @@
       transform: translateY(10px);
       opacity: 0;
 
+      //display: flex;
+      // justify-content: center;
+      // align-items: center;
+
       &:nth-child(0){ animation-delay: .05s; }
       &:nth-child(1){ animation-delay: .1s; }
       &:nth-child(2){ animation-delay: .15s; }
@@ -85,6 +89,13 @@
         &:checked+.Checkmark {
           border: 2px solid var(--colorMarigold);
         }
+      }
+
+      img{
+        width: 20px;
+        height: 20px;
+        margin-top: 18px;
+        margin-right: 5px;
       }
 
       .Checkmark {
