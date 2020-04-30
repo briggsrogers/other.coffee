@@ -43,7 +43,6 @@ class Slider extends React.Component {
 
   componentDidMount() {
     //this.slider.onTouchEnd = () => {console.log('Change')};
-    
   }
 
   generateCards() {

@@ -12,7 +12,7 @@ export const toggleFavourite = (item) => {
     
     let array = JSON.parse(favourites);
 
-    if( favourites.indexOf(item) > -1 ){
+    if( array.indexOf(item) > -1 ){
         //Remove all
         for(var i = array.length - 1; i >= 0; i--) {
             if(array[i] === item) {
@@ -42,6 +42,12 @@ export const getFavourites = () => {
 export const isFavourite = (item) => {
     const KEY = 'favourites';
     let favourites = window.localStorage.getItem(KEY);
+    
+    // If no favs created yet
+    if( !favourites ){
+        favourites = '[]'; 
+    }
+    
     let array = JSON.parse(favourites);
 
     return array.indexOf(item) > -1;

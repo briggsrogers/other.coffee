@@ -59,9 +59,9 @@
     }
 
     .Title{
-      font-family: 'Bowlby One SC', cursive;
+      font-family: 'Bowlby One SC', sans-serif;
       color: var(--colorMidGray);
-      font-size: 30px;
+      font-size: 28px;
       letter-spacing: -.01em;
       width: 90%;
       margin-top: 15px;
@@ -101,7 +101,7 @@
       transform: translateY(100px);
       opacity: 0;
 
-      pointer-events: none;
+      pointer-events: auto;
 
       @keyframes rise {
         to{

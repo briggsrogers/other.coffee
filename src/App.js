@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-// import Header from './component/Header';
+import Header from './component/Header';
 import FilterView from "./component/FilterView";
 import Slider from "./component/Slider";
 import MapBox from "./component/MapBox";
@@ -20,7 +20,7 @@ class App extends React.Component {
       relevantEntries: [],
       selectedEntry: {},
       userLocation: [53.339961, -6.24197], //Dublin
-      menuActive: false,
+      filterViewActive: false,
       filtersApplied: false,
       isAwaitingData: true,
     };
@@ -48,7 +48,7 @@ class App extends React.Component {
   }
 
   toggleMenu() {
-    this.setState({ menuActive: !this.state.menuActive });
+    this.setState({ filterViewActive: !this.state.filterViewActive });
   }
 
   toggleFilterApplied(boolean) {
@@ -148,7 +148,7 @@ class App extends React.Component {
       relevantEntries,
       selectedEntry,
       selectedIndex,
-      menuActive,
+      filterViewActive,
       filtersApplied,
       isAwaitingData,
     } = this.state;
@@ -157,7 +157,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        {/* <Header /> */}
         <MapBox
           allEntries={relevantEntries}
           relevantEntries={relevantEntries}
@@ -175,21 +174,21 @@ class App extends React.Component {
           onFilter={this.updateRelavent}
           toggleFilterApplied={this.toggleFilterApplied}
           allEntries={allEntries}
-          active={menuActive}
+          active={filterViewActive}
         />
 
         <div
           className="MenuToggle"
-          data-active={menuActive}
+          data-active={filterViewActive}
           onClick={this.toggleMenu}
           data-filtersapplied={filtersApplied}
         >
-          {menuActive ? (
+          {filterViewActive ? (
             <span className="ToggleInnerActive">{`${relevantEntries.length} ${placesNoun}`}</span>
           ) : (
             <span className="ToggleInnerInActive">
-              <img src={icon} alt="filter" />
-              <span>Filters</span>
+              {/* <img src={icon} alt="filter" /> */}
+              <span>Menu</span>
             </span>
           )}
         </div>

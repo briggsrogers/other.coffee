@@ -13,7 +13,7 @@ body {
 }
 
 h1{
-  font-family: 'Bowlby One SC', cursive;
+  font-family: 'Bowlby One SC', sans-serif;
   color: var(--colorMidGray);
 }
 
@@ -72,7 +72,6 @@ p {
       right: auto;
     }
     
-
     &:active{
       transform: scale(.90);
     }
@@ -110,11 +109,12 @@ p {
 
       img{
         width: 20px;
-        margin-left: 20px;
+        //margin-left: 20px;
         margin-right: 10px;
       }
 
       span{
+        margin-left: 20px;
         margin-right: 20px;
       }
     }

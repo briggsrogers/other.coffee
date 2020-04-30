@@ -13,6 +13,7 @@ export const getEntries = (onSuccess) => {
     .then(function(response) {
       // handle success
       if (response.status === 200) {
+        console.log(response);
         onSuccess(response.data.records);
       }
 
