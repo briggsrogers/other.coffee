@@ -41,6 +41,7 @@ class Card extends React.Component {
       Notes,
       Website,
       IG,
+      LocalStocklist
     } = this.props.data.fields;
     let { distanceFromUser } = this.props.data;
     let { expanded } = this.props;
@@ -83,7 +84,15 @@ class Card extends React.Component {
           <div className="NotesContainer">
             <p>{Notes}</p>
           </div>
-
+          
+          {
+            LocalStocklist ? (
+              <div className="StocklistContainer">
+                  <p>Beans: {LocalStocklist.join(',')}</p>
+              </div>
+            ) : null
+          }
+         
           {!isMobile() || expanded ? (
             <div className="BottomContent">
               {Website ? <Link cta={Website} href={Website} /> : null}

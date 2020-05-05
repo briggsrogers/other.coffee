@@ -1,8 +1,6 @@
 import React from "react";
 import "./FilterView.scss";
 
-import icon from "../../assets/images/icon-filter@2x.png";
-
 import { isFavourite } from "../../utils/fav-helpers";
 import heart from "../../assets/images/icon-heart-on@2x.png";
 
@@ -15,6 +13,7 @@ class FilterView extends React.Component {
 
     this.state = {
       selectedView: "filter",
+      expandedView: false
     };
 
     //Binding
@@ -33,6 +32,13 @@ class FilterView extends React.Component {
       goodforwork: (item) => item.fields.GoodForWork,
       goodforgroups: (item) => item.fields.GoodForGroups,
       onlineshop: (item) => item.fields.ShopUrl,
+      serving: (item) => item.fields.CovidOpen,
+      fiveKM: (item) => (parseInt(item.distanceFromUser) <= 5),
+      tenKM: (item) => (parseInt(item.distanceFromUser) <= 10),
+      stock3FE: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('3FE') > -1 ),
+      stockCP: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('Cloud Picker') > -1 ),
+      stockFC: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('Full Circle') > -1 ),
+      stockFH: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('Farmhand') > -1 )
     };
   }
 
@@ -51,6 +57,7 @@ class FilterView extends React.Component {
 
   filterEntriesAndUpdate(activeFilters) {
     let { allEntries, onFilter, toggleFilterApplied } = this.props;
+
     let results = allEntries;
 
     // If there are filters
@@ -60,12 +67,11 @@ class FilterView extends React.Component {
         results = results.filter(this.filterFunctions[filter]);
       });
 
-      if (results.length > 0) {
-        onFilter(results);
-      }
+      onFilter(results);
 
       toggleFilterApplied(true);
     } else {
+      //No filters applied
       results = allEntries;
       onFilter(results);
 
@@ -74,7 +80,6 @@ class FilterView extends React.Component {
   }
 
   setTab(item) {
-    console.log("SetTab", item);
 
     this.setState({
       selectedView: item,
@@ -113,10 +118,7 @@ class FilterView extends React.Component {
                     favourites
                   </span>
                 </label>
-                <label className="FilterContainer">
-                  <input type="checkbox" id="onlineshop" name="onlineshop" />
-                  <span className="Checkmark">shop online</span>
-                </label>
+               
                 {/* <label className="FilterContainer">
                   <input type="checkbox" id="bakery" name="bakery" />
                   <span className="Checkmark">bakery</span>  
@@ -134,6 +136,10 @@ class FilterView extends React.Component {
                   <span className="Checkmark">accessible</span>
                 </label>
                 <label className="FilterContainer">
+                  <input type="checkbox" id="goodforwork" name="goodforwork" />
+                  <span className="Checkmark">good for work</span>
+                </label>
+                <label className="FilterContainer">
                   <input type="checkbox" id="sitinside" name="sitinside" />
                   <span className="Checkmark">sit inside</span>
                 </label>
@@ -141,17 +147,47 @@ class FilterView extends React.Component {
                   <input type="checkbox" id="sitoutside" name="sitoutside" />
                   <span className="Checkmark">sit outside</span>
                 </label>
-                <label className="FilterContainer">
-                  <input type="checkbox" id="goodforwork" name="goodforwork" />
-                  <span className="Checkmark">good for work</span>
-                </label>
-                <label className="FilterContainer">
+                {/* <label className="FilterContainer">
                   <input
                     type="checkbox"
                     id="goodforgroups"
                     name="goodforgroups"
                   />
                   <span className="Checkmark">good for groups</span>
+                </label> */}
+                <span className="Divider">Pandemic Preferences</span>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="onlineshop" name="onlineshop" />
+                  <span className="Checkmark">shop online</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="serving" name="serving" />
+                  <span className="Checkmark">now serving</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="fiveKM" name="fiveKM" />
+                  <span className="Checkmark">within 5km</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="tenKM" name="tenKM" />
+                  <span className="Checkmark">within 10km</span>
+                </label>
+                <span className="Divider">Beans Used</span>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="stock3FE" name="stock3FE" />
+                  <span className="Checkmark">3FE</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="stockCP" name="stockCP" />
+                  <span className="Checkmark">Cloud Picker</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="stockFC" name="stockFC" />
+                  <span className="Checkmark">Full Circle</span>
+                </label>
+                <label className="FilterContainer">
+                  <input type="checkbox" id="stockFH" name="stockFH" />
+                  <span className="Checkmark">Farmhand</span>
                 </label>
               </form>
             </div>
@@ -168,23 +204,11 @@ class FilterView extends React.Component {
                 Something terrible has happened. 
               </p>
               <p>
-              You&rsquo;ve just tried something delicious.
+              But also, when you&rsquo;ve just tried something delicious.
               </p>
 
               <p>
-                This is OoF. A guide to some of the best coffee in ireland.
-              </p>
-
-              <p>
-                The criteria to feature here is simple: each shop on the map makes
-                consistently great cups of coffee.
-              </p>
-
-              <p>
-                We also aggregated the websites and socials of each shop. This
-                will help you get beans delivered to you either directly from
-                your local shop (if they have the facility) or from the roastery
-                in Ireland they are supplied by.
+                OoF is a guide to some of the best coffee in ireland.
               </p>
 
               <p>
@@ -198,6 +222,7 @@ class FilterView extends React.Component {
               </p>
 
               <p>-KW</p>
+              <br/><br/><br/><br/><br/><br/>
             </div>
           ) : null}
         </div>

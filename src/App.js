@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.scss";
-import Header from './component/Header';
 import FilterView from "./component/FilterView";
 import Slider from "./component/Slider";
 import MapBox from "./component/MapBox";
@@ -10,6 +9,8 @@ import icon from "./assets/images/icon-filter@2x.png";
 
 import { getEntries } from "./utils/data-helpers";
 import { distanceBetween } from "./utils/location-helpers";
+
+import ReactGA from 'react-ga';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
       filterViewActive: false,
       filtersApplied: false,
       isAwaitingData: true,
+      haveResults: true
     };
 
     // Binding
@@ -38,6 +40,10 @@ class App extends React.Component {
   componentDidMount() {
     let { latitude, longitude } = this.state.userLocation;
 
+    // Track
+    ReactGA.initialize('UA-165438248-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
     getEntries((data) => {
       let entries = this.sortByNearby(data, latitude, longitude);
       this.setEntries(entries);
@@ -49,10 +55,23 @@ class App extends React.Component {
 
   toggleMenu() {
     this.setState({ filterViewActive: !this.state.filterViewActive });
+
+    // Track
+    ReactGA.event({
+      category: 'Interaction',
+      action: 'Menu Toggle'
+    });
+
   }
 
   toggleFilterApplied(boolean) {
     this.setState({ filtersApplied: boolean });
+
+    // Track
+    ReactGA.event({
+      category: 'Interaction',
+      action: 'Filter Toggle'
+    });
   }
 
   setEntries(entries) {
@@ -71,14 +90,29 @@ class App extends React.Component {
       selectedEntry: relevantEntries[index],
       selectedIndex: index,
     });
+
+    // Track
+    ReactGA.event({
+      category: 'Interaction',
+      action: 'Card Swipe'
+    });
   }
 
   updateRelavent(entries) {
-    this.setState({
-      relevantEntries: entries,
-      selectedEntry: entries[0],
-      selectedIndex: 0,
-    });
+
+    if(entries.length > 0){
+      this.setState({
+        relevantEntries: entries,
+        selectedEntry: entries[0],
+        selectedIndex: 0,
+        haveResults: true
+      });
+    }
+    else{
+      this.setState({
+        haveResults: false,
+      })
+    }
   }
 
   requestLocation() {
@@ -151,9 +185,11 @@ class App extends React.Component {
       filterViewActive,
       filtersApplied,
       isAwaitingData,
+      haveResults
     } = this.state;
 
-    let placesNoun = relevantEntries.length > 1 ? 'places' : 'place';
+    let buttonString = relevantEntries.length > 1 ? `${relevantEntries.length} places` : `1 place`;
+    if(!haveResults) { buttonString = 'No results :('}
 
     return (
       <div className="App">
@@ -182,9 +218,10 @@ class App extends React.Component {
           data-active={filterViewActive}
           onClick={this.toggleMenu}
           data-filtersapplied={filtersApplied}
+          data-disabled={!haveResults}
         >
           {filterViewActive ? (
-            <span className="ToggleInnerActive">{`${relevantEntries.length} ${placesNoun}`}</span>
+            <span className="ToggleInnerActive">{`${buttonString}`}</span>
           ) : (
             <span className="ToggleInnerInActive">
               {/* <img src={icon} alt="filter" /> */}

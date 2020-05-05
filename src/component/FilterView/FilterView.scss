@@ -14,6 +14,32 @@
 
   display: none;
 
+  .Divider{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    grid-column: 1/-1;
+    font-size: 11px;
+    color: var(--colorMidGray);
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    animation: rise .3s ease-in-out forwards;
+    transform: translateY(35px);
+    opacity: 0;
+
+    &::after{
+      content: '';
+      width: 60px;
+      height: 1px;
+      background-color: var(--colorMarigold);
+      position: absolute;
+      right: 0;
+      top: 4px;
+    }
+  }
+
   //Desktop
   @media only screen and (min-width: 799px) {
     position: absolute;
@@ -30,13 +56,18 @@
     text-align: center;
   }
 
+  .FilterField{
+    height: 60vh;
+    overflow: scroll;
+  }
+
   .FilterHeader {
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-bottom: 40px;
-    margin-top: 10vh;
+    margin-top: 8vh;
 
     img {
       width: 20px;
@@ -52,8 +83,21 @@
       opacity: .3;
       margin: 6px;
       cursor: pointer;
+      width: 100px;
+
       &[data-selected="true"]{
         opacity: 1;
+
+        &::before{
+          content: '';
+          position: absolute;
+          top: -20px;
+          margin-left: 41px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: var(--colorMarigold);
+        }
       }
     }
 
@@ -62,7 +106,14 @@
   .ScrollView{
     text-align: left;
     overflow: scroll;
-    height: 60vh;
+    height: 80vh;
+    
+
+    &::first-letter {
+      font-size: 300%;
+      color: var(--colorMarigold);
+      font-family: 'Bowlby One SC', sans-serif;
+    }
 
     &:before {
       content:'';
@@ -109,6 +160,13 @@
       &:nth-child(7){ animation-delay: .4s; }
       &:nth-child(8){ animation-delay: .45s; }
       &:nth-child(9){ animation-delay: .5s; }
+      &:nth-child(10){ animation-delay: .55s; }
+      &:nth-child(11){ animation-delay: .6s; }
+      &:nth-child(12){ animation-delay: .65s; }
+      &:nth-child(13){ animation-delay: .7s; }
+      &:nth-child(14){ animation-delay: .75s; }
+      &:nth-child(15){ animation-delay: .8s; }
+      &:nth-child(16){ animation-delay: .85s; }
 
       input {
         position: relative;

@@ -71,6 +71,7 @@ p {
       left: 2%;
       right: auto;
     }
+
     
     &:active{
       transform: scale(.90);
@@ -88,6 +89,12 @@ p {
         background-color: var(--colorMarigold);
         opacity: .9;
       }
+    }
+
+    &[data-disabled="true"]{
+      background-color: var(--colorLightGray) !important;
+      opacity: .5;
+      pointer-events: none;
     }
 
     &[data-filtersapplied="false"]{

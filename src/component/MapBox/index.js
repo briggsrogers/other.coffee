@@ -13,7 +13,7 @@ class MapBox extends React.Component {
     this.state = {
       lng: 53.339961, //Dublin
       lat: -6.24197,
-      zoom: 5,
+      zoom: 13,
       pitch: 60,
     };
 
