@@ -35,6 +35,7 @@ class FilterView extends React.Component {
       serving: (item) => item.fields.CovidOpen,
       fiveKM: (item) => (parseInt(item.distanceFromUser) <= 5),
       tenKM: (item) => (parseInt(item.distanceFromUser) <= 10),
+      twentyKM: (item) => (parseInt(item.distanceFromUser) <= 20),
       stock3FE: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('3FE') > -1 ),
       stockCP: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('Cloud Picker') > -1 ),
       stockFC: (item) => ( item.fields.LocalStocklist && item.fields.LocalStocklist.indexOf('Full Circle') > -1 ),
@@ -165,12 +166,12 @@ class FilterView extends React.Component {
                   <span className="Checkmark">now serving</span>
                 </label>
                 <label className="FilterContainer">
-                  <input type="checkbox" id="fiveKM" name="fiveKM" />
-                  <span className="Checkmark">within 5km</span>
+                  <input type="checkbox" id="tenKM" name="tenKM" />
+                  <span className="Checkmark">within 10km</span>
                 </label>
                 <label className="FilterContainer">
                   <input type="checkbox" id="tenKM" name="tenKM" />
-                  <span className="Checkmark">within 10km</span>
+                  <span className="Checkmark">within 20km</span>
                 </label>
                 <span className="Divider">Beans Used</span>
                 <label className="FilterContainer">

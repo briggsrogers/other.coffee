@@ -49,6 +49,7 @@ class MapBox extends React.Component {
       el.className = classList;
 
       el.dataset.fav = isFavourite(item.id);
+      el.dataset.isopen = (item.fields.CovidOpen === true);
 
       // create the popup
       let popup = new mapboxgl.Popup({ offset: 25 }).setText(Name);

@@ -5,8 +5,6 @@ import Slider from "./component/Slider";
 import MapBox from "./component/MapBox";
 import Spinner from "./component/Spinner";
 
-import icon from "./assets/images/icon-filter@2x.png";
-
 import { getEntries } from "./utils/data-helpers";
 import { distanceBetween } from "./utils/location-helpers";
 

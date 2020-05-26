@@ -41,7 +41,8 @@ class Card extends React.Component {
       Notes,
       Website,
       IG,
-      LocalStocklist
+      LocalStocklist,
+      CovidOpen
     } = this.props.data.fields;
     let { distanceFromUser } = this.props.data;
     let { expanded } = this.props;
@@ -62,12 +63,15 @@ class Card extends React.Component {
             <div className="Location">
               <img src={location} alt="" />
               <span>{PlaceName}</span>
-            </div>
-            {distanceFromUser !== null ? (
+              {distanceFromUser !== null ? (
               <div className="Distance">
                 <span>{distanceFromUser} km away</span>
               </div>
             ) : null}
+            </div>
+            <div className="Status">
+              <span>{CovidOpen === true ? 'Now Serving!' : 'Temporarily Closed'}</span>
+            </div>
           </div>
 
           <div className="ButtonContainer">
@@ -88,7 +92,7 @@ class Card extends React.Component {
           {
             LocalStocklist ? (
               <div className="StocklistContainer">
-                  <p>Beans: {LocalStocklist.join(',')}</p>
+                  Beans: {LocalStocklist.join(',')}
               </div>
             ) : null
           }

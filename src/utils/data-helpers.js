@@ -8,8 +8,6 @@ export const getEntries = (onSuccess) => {
 
   const fetchBatch = (url, onSuccess) => {
 
-    console.log('Fetching', url);
-
     axios
     .get(url, 
       { 
@@ -22,7 +20,11 @@ export const getEntries = (onSuccess) => {
       if (response.status === 200) {
 
         //Add to all-up records array
-        response.data.records.forEach( (item) => { records.push(item); });
+        response.data.records.forEach( (item) => { 
+          if(isValid(item)) {
+            records.push(item); 
+          }
+        });
 
         //Has offset?
         if(response.data.offset){
@@ -45,6 +47,10 @@ export const getEntries = (onSuccess) => {
     .then(function() {
       // always executed
     });
+  }
+
+  const isValid = (item) => {
+    return( item.fields && item.fields.Name && item.fields.Latitude && item.fields.Longitude )
   }
   
   //First Fetch

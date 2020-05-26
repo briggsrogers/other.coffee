@@ -52,5 +52,9 @@
     &[data-fav="true"]{
       border-color: var(--colorPink);
     }
+
+    &[data-isopen="false"]{
+      opacity: .15;
+    }
   }
 }
