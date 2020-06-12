@@ -17,6 +17,10 @@ h1{
   color: var(--colorMidGray);
 }
 
+a {color: var(--colorMidGray); }
+a:visited {color: var(--colorMidGray); }
+a:active {color: var(--colorMarigold); }
+
 p {
   font-size: 14px;
   line-height: 26px;

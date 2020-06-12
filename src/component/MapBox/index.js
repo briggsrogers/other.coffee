@@ -14,7 +14,7 @@ class MapBox extends React.Component {
       lng: 53.339961, //Dublin
       lat: -6.24197,
       zoom: 13,
-      pitch: 60,
+      pitch: 40,
     };
 
     this.markers = [];
