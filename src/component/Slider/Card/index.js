@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import "./Card.scss";
 
@@ -42,11 +43,14 @@ class Card extends React.Component {
       Website,
       IG,
       LocalStocklist,
-      CovidOpen
+      CovidOpen,
+      Latitude,
+      Longitude
     } = this.props.data.fields;
     let { distanceFromUser } = this.props.data;
     let { expanded } = this.props;
     let { isFavourite } = this.state;
+    const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${Latitude}%2C${Longitude}&mode=bicycling`;
 
     return (
       <div className="CardContainer">
@@ -65,7 +69,7 @@ class Card extends React.Component {
               <span>{PlaceName}</span>
               {distanceFromUser !== null ? (
               <div className="Distance">
-                <span>{distanceFromUser} km away</span>
+                <span><a href={directionsLink} target="_blank">{distanceFromUser} km away</a></span>
               </div>
             ) : null}
             </div>
