@@ -4,7 +4,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import mapboxgl from "mapbox-gl";
 
-import { isFavourite } from '../../utils/fav-helpers';
+import logo from '../../assets/images/oof-logo-white.png';
+
+import { isFavourite } from "../../utils/fav-helpers";
 
 class MapBox extends React.Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class MapBox extends React.Component {
 
     items.forEach((item, index) => {
       let { Longitude, Latitude, Name } = item.fields;
-      
+
       // create a HTML element for each feature
       var el = document.createElement("div");
       el.addEventListener("click", () => {
@@ -49,7 +51,7 @@ class MapBox extends React.Component {
       el.className = classList;
 
       el.dataset.fav = isFavourite(item.id);
-      el.dataset.isopen = (item.fields.CovidOpen === true);
+      el.dataset.isopen = item.fields.CovidOpen === true;
 
       // create the popup
       let popup = new mapboxgl.Popup({ offset: 25 }).setText(Name);
@@ -83,7 +85,7 @@ class MapBox extends React.Component {
         essential: true,
         curve: 0.5,
         speed: 1.5,
-        zoom: 14
+        zoom: 14,
       });
 
       //Re-draw markers
@@ -112,14 +114,14 @@ class MapBox extends React.Component {
 
     //Add User Location
     // Add geolocate control to the map.
-    this.map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true,
-        },
-        trackUserLocation: true,
-      })
-    );
+    // this.map.addControl(
+    //   new mapboxgl.GeolocateControl({
+    //     positionOptions: {
+    //       enableHighAccuracy: false,
+    //     },
+    //     trackUserLocation: false,
+    //   })
+    // );
 
     this.generateMarkers(allEntries);
   }
@@ -127,10 +129,12 @@ class MapBox extends React.Component {
   render() {
     return (
       <div className="Container">
+        
         <div
           className="MapBoxTarget"
           ref={(el) => (this.mapContainer = el)}
         ></div>
+        <img className="Logo" src={logo} alt="" />
       </div>
     );
   }

@@ -18,7 +18,7 @@ class App extends React.Component {
       allEntries: [],
       relevantEntries: [],
       selectedEntry: {},
-      userLocation: [53.339961, -6.24197], //Dublin
+      userLocation: [53.339961, -6.24197], //Default to Dublin
       filterViewActive: false,
       filtersApplied: false,
       isAwaitingData: true,
@@ -227,6 +227,8 @@ class App extends React.Component {
             </span>
           )}
         </div>
+
+        
 
         {isAwaitingData ? (
           <div className="LoadingVeil">
